@@ -32,8 +32,8 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Devtoberfest 2021 Leaderboard</title>
-        <meta name="description" content="Devtoberfest 2021 Leaderboard" />
+        <title>Bread Heads Gaming Challenge #1: Mazes</title>
+        <meta name="description" content="Bread Heads Gaming Challenge #1: Mazes" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -41,22 +41,21 @@ export default function Home() {
         <IconButton onClick={toggleColorMode}>{colorMode === 'light' ? <MoonIcon /> : <SunIcon />}</IconButton>
         <Image
           boxSize="300px"
-          src={colorMode === 'light' ? '/Devtoberfest-Logo-light.png' : '/Devtoberfest-Logo-dark.png'}
-          alt="Devtoberfest logo"
+          src="/logo.png"
+          alt="Bread Heads Logo"
         />
         <h1 className={styles.title}>Leaderboard</h1>
-        <p className={styles.description}>Check the unofficial leaderboard right below 🐱‍💻</p>
+        {/* <p className={styles.description}>Check the unofficial leaderboard right below 🐱‍💻</p> */}
         <Divider />
         <Table variant="striped" size="sm">
           <TableCaption placement="top">
-            Kudos to all participants, organizers and supporters of this event 👾
+            Congrats to all participants!
           </TableCaption>
           <Thead>
             <Tr>
               <Th>Rank</Th>
-              <Th>Developer</Th>
-              <Th>Level</Th>
-              <Th isNumeric>Points</Th>
+              <Th>Wallet Address</Th>
+              <Th isNumeric># of Mazes Completed</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -64,7 +63,6 @@ export default function Home() {
               <Tr key={user.id}>
                 <Td>{++index}</Td>
                 <Td>{user.id}</Td>
-                <Td>{user.level}</Td>
                 <Td isNumeric>{user.points}</Td>
               </Tr>
             ))}
@@ -72,15 +70,14 @@ export default function Home() {
           <Tfoot>
             <Tr>
               <Th>Rank</Th>
-              <Th>Developer</Th>
-              <Th>Level</Th>
-              <Th isNumeric>Points</Th>
+              <Th>Wallet Address</Th>
+              <Th isNumeric># of Mazes Completed</Th>
             </Tr>
           </Tfoot>
         </Table>
       </main>
 
-      <footer className={styles.footer}>
+      {/* <footer className={styles.footer}>
         <Text>
           Made with ❤,{' '}
           <Link href="https://nextjs.org" isExternal>
@@ -94,7 +91,7 @@ export default function Home() {
           </Link>{' '}
           and a lot of ☕ coffee!
         </Text>
-      </footer>
+      </footer> */}
     </div>
   )
 }
