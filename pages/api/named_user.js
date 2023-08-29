@@ -25,7 +25,7 @@ export default async function handler(req, res) {
   // Run cors
   await cors(req, res)
 
-  const connection = new web3.Connection(process.env.RPC_URL);
+  const connection = new web3.Connection("https://solana-mainnet.rpc.extrnode.com");
   const provider = { connection: connection };
   const program = new Program(idl, programID, provider);
   const proofs = await program.account.winProof.all();
@@ -46,7 +46,7 @@ export default async function handler(req, res) {
   for (const participant of Object.keys(participants)) {
     // console.log(await getDomain(participant));
     // console.log(await getAllDomains(connection, new web3.PublicKey(participant)));
-    const user = { id: participant, points: participants[participant] };
+    const user = { id: await getDomain(connection, participant), points: participants[participant] };
     participantScores.push(user);
   }
 
@@ -55,4 +55,24 @@ export default async function handler(req, res) {
 
   console.log(participantScores);
   res.json({ participantScores: participantScores })
+}
+
+async function getDomain(connection, address) {
+  // try {
+  const pubKey = new web3.PublicKey(address);
+  const domains = await getAllDomains(connection, pubKey);
+  if (domains.length === 0) {
+    return address;
+  } else {
+    console.log("Domains:", domains);
+    const reqs = domains.map((x) => reverseLookup(connection, x));
+    console.log("Reqs:", reqs);
+    const resolvedNames = await Promise.all(reqs);
+    console.log("Resolved Names:", resolvedNames);
+
+    return resolvedNames[0];
+  }
+  // } catch (e) {
+  //   return address;
+  // }
 }

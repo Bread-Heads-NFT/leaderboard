@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@bonfida/spl-name-service": "^1.0.10",
     "@chakra-ui/icons": "^1.0.17",
     "@chakra-ui/react": "^1.6.12",
     "@coral-xyz/anchor": "^0.28.1-beta.1",

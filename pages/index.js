@@ -114,7 +114,7 @@ export default function Home() {
 }
 
 async function fetchImages() {
-  const umi = createUmi("https://solana-mainnet.rpc.extrnode.com")
+  const umi = createUmi(process.env.NEXT_PUBLIC_RPC_URL)
     .use(mplTokenMetadata())
     .use(mplToolbox());
 
