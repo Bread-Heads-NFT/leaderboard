@@ -132,9 +132,14 @@ async function fetchImages() {
       console.log("Metadata: ", metadata);
       const json = await fetchJsonMetadata(umi, metadata.metadata.uri);
       console.log("JSON: ", json);
+      let caption = json.name;
+      if (asset.amount > 1) {
+        caption = metadata.metadata.symbol + ": " + (Number(asset.amount) / Math.pow(10, metadata.mint.decimals));
+      }
+
       images.push({
         src: json.image,
-        caption: json.name,
+        caption,
       });
     } catch (e) {
       console.log("Error:", JSON.stringify(e));
