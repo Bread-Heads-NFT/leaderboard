@@ -22,7 +22,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json())
 
 export default function Home() {
   const { colorMode, toggleColorMode } = useColorMode()
-  const { data, error } = useSWR('/api/user', fetcher)
+  const { data, error } = useSWR('/api/holder', fetcher)
   const [images, setImages] = useState([]);
   const endDate = new Date('9/19/2023 10:00:00 PM UTC');
 
